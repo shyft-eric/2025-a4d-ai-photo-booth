@@ -1,0 +1,26 @@
+{
+	"name": "Vibe Coding Photo Booth",
+	"image": "mcr.microsoft.com/devcontainers/base:noble",
+	"features": {
+		"ghcr.io/devcontainers/features/node:1": {},
+		"ghcr.io/devcontainers/features/python:1": {},
+		"ghcr.io/va-h/devcontainers-features/uv:1": {}
+	},
+	"postCreateCommand": "bash .devcontainer/setup.sh",
+	"mounts": [
+		"source=${localEnv:HOME}/.claude-code,target=/home/node/.claude-code,type=bind"
+	],
+	"portsAttributes": {
+		"3000": {
+			"label": "Nextjs server"
+		}
+	},
+	"forwardPorts": [3000],
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"editor.formatOnSave": true
+			}
+		}
+	}
+}

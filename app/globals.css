@@ -1,0 +1,430 @@
+@import "tailwindcss";
+
+/* ============================================
+   VIBE CODING PHOTO BOOTH - THEME SYSTEM
+   ============================================ */
+
+@theme inline {
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-full: 9999px;
+}
+
+/* ============================================
+   DEFAULT THEME (Neutral)
+   ============================================ */
+:root {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 3.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 3.9%;
+  --primary: 0 0% 9%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 0 0% 96.1%;
+  --secondary-foreground: 0 0% 9%;
+  --muted: 0 0% 96.1%;
+  --muted-foreground: 0 0% 45.1%;
+  --accent: 0 0% 96.1%;
+  --accent-foreground: 0 0% 9%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 89.8%;
+  --input: 0 0% 89.8%;
+  --ring: 0 0% 3.9%;
+  --theme-gradient-start: 0 0% 100%;
+  --theme-gradient-end: 0 0% 96%;
+}
+
+/* ============================================
+   CHRISTMAS CHARACTERS
+   ============================================ */
+
+[data-theme="santa"] {
+  --background: 0 100% 99%;
+  --foreground: 0 0% 10%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 10%;
+  --primary: 350 80% 45%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 45 100% 60%;
+  --secondary-foreground: 0 0% 10%;
+  --accent: 45 100% 50%;
+  --accent-foreground: 0 0% 10%;
+  --muted: 0 20% 95%;
+  --muted-foreground: 0 0% 40%;
+  --border: 0 30% 85%;
+  --ring: 350 80% 45%;
+  --theme-gradient-start: 350 80% 45%;
+  --theme-gradient-end: 350 70% 35%;
+}
+
+[data-theme="mrs-claus"] {
+  --background: 30 50% 98%;
+  --foreground: 20 30% 15%;
+  --card: 30 40% 99%;
+  --card-foreground: 20 30% 15%;
+  --primary: 350 65% 50%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 30 60% 85%;
+  --secondary-foreground: 20 30% 15%;
+  --accent: 30 80% 45%;
+  --accent-foreground: 0 0% 100%;
+  --muted: 30 30% 94%;
+  --muted-foreground: 20 20% 45%;
+  --border: 30 30% 85%;
+  --ring: 350 65% 50%;
+  --theme-gradient-start: 350 65% 50%;
+  --theme-gradient-end: 30 80% 45%;
+}
+
+[data-theme="scrooge"] {
+  --background: 150 20% 97%;
+  --foreground: 150 30% 10%;
+  --card: 150 10% 99%;
+  --card-foreground: 150 30% 10%;
+  --primary: 150 40% 25%;
+  --primary-foreground: 45 100% 85%;
+  --secondary: 45 80% 50%;
+  --secondary-foreground: 150 30% 10%;
+  --accent: 45 100% 45%;
+  --accent-foreground: 150 30% 10%;
+  --muted: 150 15% 93%;
+  --muted-foreground: 150 15% 40%;
+  --border: 150 20% 80%;
+  --ring: 150 40% 25%;
+  --theme-gradient-start: 150 40% 25%;
+  --theme-gradient-end: 45 80% 50%;
+}
+
+[data-theme="rudolph"] {
+  --background: 220 30% 98%;
+  --foreground: 220 30% 10%;
+  --card: 0 0% 100%;
+  --card-foreground: 220 30% 10%;
+  --primary: 0 85% 55%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 220 40% 35%;
+  --secondary-foreground: 0 0% 100%;
+  --accent: 0 0% 85%;
+  --accent-foreground: 220 30% 10%;
+  --muted: 220 20% 94%;
+  --muted-foreground: 220 15% 45%;
+  --border: 220 20% 85%;
+  --ring: 0 85% 55%;
+  --theme-gradient-start: 0 85% 55%;
+  --theme-gradient-end: 220 40% 35%;
+}
+
+[data-theme="frosty"] {
+  --background: 200 60% 98%;
+  --foreground: 200 30% 15%;
+  --card: 200 40% 99%;
+  --card-foreground: 200 30% 15%;
+  --primary: 200 80% 55%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 0% 98%;
+  --secondary-foreground: 200 30% 15%;
+  --accent: 25 100% 55%;
+  --accent-foreground: 0 0% 100%;
+  --muted: 200 30% 94%;
+  --muted-foreground: 200 20% 45%;
+  --border: 200 30% 85%;
+  --ring: 200 80% 55%;
+  --theme-gradient-start: 200 80% 55%;
+  --theme-gradient-end: 200 60% 75%;
+}
+
+[data-theme="jack-frost"] {
+  --background: 250 40% 98%;
+  --foreground: 250 30% 15%;
+  --card: 250 30% 99%;
+  --card-foreground: 250 30% 15%;
+  --primary: 200 70% 60%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 280 50% 65%;
+  --secondary-foreground: 0 0% 100%;
+  --accent: 0 0% 90%;
+  --accent-foreground: 250 30% 15%;
+  --muted: 250 20% 94%;
+  --muted-foreground: 250 15% 45%;
+  --border: 250 25% 85%;
+  --ring: 200 70% 60%;
+  --theme-gradient-start: 200 70% 60%;
+  --theme-gradient-end: 280 50% 65%;
+}
+
+[data-theme="nutcracker"] {
+  --background: 280 20% 98%;
+  --foreground: 280 30% 10%;
+  --card: 0 0% 100%;
+  --card-foreground: 280 30% 10%;
+  --primary: 280 60% 40%;
+  --primary-foreground: 45 100% 90%;
+  --secondary: 45 80% 50%;
+  --secondary-foreground: 280 30% 10%;
+  --accent: 350 70% 50%;
+  --accent-foreground: 0 0% 100%;
+  --muted: 280 15% 93%;
+  --muted-foreground: 280 15% 45%;
+  --border: 280 20% 82%;
+  --ring: 280 60% 40%;
+  --theme-gradient-start: 280 60% 40%;
+  --theme-gradient-end: 45 80% 50%;
+}
+
+[data-theme="sugar-plum"] {
+  --background: 320 50% 98%;
+  --foreground: 320 30% 15%;
+  --card: 320 40% 99%;
+  --card-foreground: 320 30% 15%;
+  --primary: 320 60% 60%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 280 50% 75%;
+  --secondary-foreground: 320 30% 15%;
+  --accent: 45 100% 60%;
+  --accent-foreground: 320 30% 15%;
+  --muted: 320 25% 94%;
+  --muted-foreground: 320 20% 45%;
+  --border: 320 30% 85%;
+  --ring: 320 60% 60%;
+  --theme-gradient-start: 320 60% 60%;
+  --theme-gradient-end: 280 50% 75%;
+}
+
+[data-theme="krampus"] {
+  --background: 0 5% 10%;
+  --foreground: 0 0% 95%;
+  --card: 0 5% 15%;
+  --card-foreground: 0 0% 95%;
+  --primary: 0 80% 50%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 0% 30%;
+  --secondary-foreground: 0 0% 95%;
+  --accent: 45 70% 45%;
+  --accent-foreground: 0 0% 10%;
+  --muted: 0 5% 20%;
+  --muted-foreground: 0 0% 60%;
+  --border: 0 5% 25%;
+  --ring: 0 80% 50%;
+  --theme-gradient-start: 0 80% 50%;
+  --theme-gradient-end: 0 0% 15%;
+}
+
+[data-theme="father-time"] {
+  --background: 230 40% 12%;
+  --foreground: 0 0% 95%;
+  --card: 230 35% 18%;
+  --card-foreground: 0 0% 95%;
+  --primary: 230 50% 55%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 0% 80%;
+  --secondary-foreground: 230 40% 12%;
+  --accent: 45 80% 60%;
+  --accent-foreground: 230 40% 12%;
+  --muted: 230 30% 22%;
+  --muted-foreground: 230 20% 65%;
+  --border: 230 30% 30%;
+  --ring: 230 50% 55%;
+  --theme-gradient-start: 230 50% 55%;
+  --theme-gradient-end: 0 0% 80%;
+}
+
+[data-theme="baby-new-year"] {
+  --background: 45 60% 98%;
+  --foreground: 220 30% 15%;
+  --card: 0 0% 100%;
+  --card-foreground: 220 30% 15%;
+  --primary: 45 90% 55%;
+  --primary-foreground: 220 30% 15%;
+  --secondary: 200 60% 85%;
+  --secondary-foreground: 220 30% 15%;
+  --accent: 0 0% 98%;
+  --accent-foreground: 220 30% 15%;
+  --muted: 45 30% 94%;
+  --muted-foreground: 45 20% 45%;
+  --border: 45 40% 85%;
+  --ring: 45 90% 55%;
+  --theme-gradient-start: 45 90% 55%;
+  --theme-gradient-end: 200 60% 85%;
+}
+
+[data-theme="polar-bear"] {
+  --background: 195 50% 97%;
+  --foreground: 195 30% 15%;
+  --card: 0 0% 100%;
+  --card-foreground: 195 30% 15%;
+  --primary: 195 70% 45%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 0% 96%;
+  --secondary-foreground: 195 30% 15%;
+  --accent: 150 50% 45%;
+  --accent-foreground: 0 0% 100%;
+  --muted: 195 25% 93%;
+  --muted-foreground: 195 20% 45%;
+  --border: 195 25% 85%;
+  --ring: 195 70% 45%;
+  --theme-gradient-start: 195 70% 45%;
+  --theme-gradient-end: 0 0% 96%;
+}
+
+/* ============================================
+   HANUKKAH THEMES
+   ============================================ */
+
+[data-theme="maccabee"] {
+  --background: 220 50% 98%;
+  --foreground: 220 40% 12%;
+  --card: 0 0% 100%;
+  --card-foreground: 220 40% 12%;
+  --primary: 220 70% 50%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 220 10% 75%;
+  --secondary-foreground: 220 40% 12%;
+  --accent: 45 80% 55%;
+  --accent-foreground: 220 40% 12%;
+  --muted: 220 25% 94%;
+  --muted-foreground: 220 20% 45%;
+  --border: 220 30% 85%;
+  --ring: 220 70% 50%;
+  --theme-gradient-start: 220 70% 50%;
+  --theme-gradient-end: 220 10% 75%;
+}
+
+[data-theme="shamash"] {
+  --background: 45 50% 97%;
+  --foreground: 45 40% 12%;
+  --card: 45 30% 99%;
+  --card-foreground: 45 40% 12%;
+  --primary: 45 90% 50%;
+  --primary-foreground: 45 40% 12%;
+  --secondary: 220 60% 55%;
+  --secondary-foreground: 0 0% 100%;
+  --accent: 0 0% 95%;
+  --accent-foreground: 45 40% 12%;
+  --muted: 45 30% 93%;
+  --muted-foreground: 45 25% 45%;
+  --border: 45 35% 82%;
+  --ring: 45 90% 50%;
+  --theme-gradient-start: 45 90% 50%;
+  --theme-gradient-end: 220 60% 55%;
+}
+
+/* ============================================
+   KWANZAA THEMES
+   ============================================ */
+
+[data-theme="umoja"] {
+  --background: 0 0% 98%;
+  --foreground: 0 0% 8%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 8%;
+  --primary: 0 75% 45%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 145 60% 35%;
+  --secondary-foreground: 0 0% 100%;
+  --accent: 0 0% 15%;
+  --accent-foreground: 0 0% 100%;
+  --muted: 0 5% 94%;
+  --muted-foreground: 0 0% 40%;
+  --border: 0 5% 85%;
+  --ring: 0 75% 45%;
+  --theme-gradient-start: 0 75% 45%;
+  --theme-gradient-end: 145 60% 35%;
+}
+
+[data-theme="kuumba"] {
+  --background: 45 60% 97%;
+  --foreground: 0 0% 10%;
+  --card: 45 40% 99%;
+  --card-foreground: 0 0% 10%;
+  --primary: 145 65% 40%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 70% 50%;
+  --secondary-foreground: 0 0% 100%;
+  --accent: 45 100% 50%;
+  --accent-foreground: 0 0% 10%;
+  --muted: 45 30% 93%;
+  --muted-foreground: 45 20% 40%;
+  --border: 45 35% 82%;
+  --ring: 145 65% 40%;
+  --theme-gradient-start: 145 65% 40%;
+  --theme-gradient-end: 0 70% 50%;
+}
+
+/* ============================================
+   WINTER SOLSTICE
+   ============================================ */
+
+[data-theme="solstice"] {
+  --background: 240 40% 15%;
+  --foreground: 0 0% 95%;
+  --card: 240 35% 20%;
+  --card-foreground: 0 0% 95%;
+  --primary: 45 100% 60%;
+  --primary-foreground: 240 40% 15%;
+  --secondary: 200 60% 70%;
+  --secondary-foreground: 240 40% 15%;
+  --accent: 280 50% 60%;
+  --accent-foreground: 0 0% 100%;
+  --muted: 240 30% 25%;
+  --muted-foreground: 240 20% 65%;
+  --border: 240 30% 30%;
+  --ring: 45 100% 60%;
+  --theme-gradient-start: 240 40% 15%;
+  --theme-gradient-end: 280 50% 60%;
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+* {
+  border-color: hsl(var(--border));
+}
+
+body {
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.phone-frame {
+  width: 390px;
+  height: 844px;
+  border-radius: 44px;
+  overflow: hidden;
+  position: relative;
+  background: hsl(var(--background));
+  box-shadow: 
+    0 0 0 12px hsl(var(--foreground) / 0.08),
+    0 25px 50px -12px hsl(var(--foreground) / 0.25);
+}
+
+.phone-frame::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 126px;
+  height: 37px;
+  background: hsl(var(--foreground) / 0.08);
+  border-radius: 0 0 24px 24px;
+  z-index: 50;
+}
+
+.theme-gradient {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--theme-gradient-start)),
+    hsl(var(--theme-gradient-end))
+  );
+}
+
+.screenshot-ready {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

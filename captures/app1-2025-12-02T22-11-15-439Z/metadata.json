@@ -1,0 +1,11 @@
+{
+  "appNumber": 1,
+  "appName": "PennyPincher",
+  "author": "Demo",
+  "screens": [
+    "captures/app1-2025-12-02T22-11-15-439Z/splash.png",
+    "captures/app1-2025-12-02T22-11-15-439Z/screen-1.png",
+    "captures/app1-2025-12-02T22-11-15-439Z/screen-2.png"
+  ],
+  "timestamp": "2025-12-02T22-11-15-439Z"
+}
