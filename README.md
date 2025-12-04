@@ -1,36 +1,183 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Vibe Coding Photo Booth
+
+A holiday tech meetup activity where guests create whimsical mobile app mockups in 2-3 minutes using AI-assisted coding. The system generates themed app screens that get captured and assembled into shareable photo collages.
+
+![Homepage](docs/screenshots/homepage.png)
+
+## Features
+
+- **17 Holiday Character Themes** - Santa, Mrs. Claus, Rudolph, Frosty, Nutcracker, and more
+- **12 App Type Templates** - Ride-share, food delivery, dating, fitness, productivity, etc.
+- **Live Collage Preview** - See your app screens rendered in beautiful phone mockups
+- **4 Collage Layouts** - Choose from cascading, stacked, hero, or lineup layouts
+- **AI-Powered App Generation** - Use Claude Code to generate complete app mockups from prompts
+
+![Collage Preview](docs/screenshots/collage-preview.png)
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Node.js 18+
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-org/2025-a4d-ai-photo-booth.git
+   cd 2025-a4d-ai-photo-booth
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## How to Use
+
+### For Guests (Creating an App)
+
+1. **Fill out the form** on the homepage:
+   - Enter your **App Name** (e.g., "FrostyFitness")
+   - Enter **Your Name** for credits
+   - Select a **Character** theme (determines color palette)
+   - Select an **App Type** (determines UI patterns)
+
+2. **Copy the generated prompt** and give it to the operator running Claude Code
+
+3. **View your app** once generated at `/app{N}` (e.g., `/app5`)
+
+4. **Create your collage** at `/collage/app{N}`:
+   - Choose from 4 different layouts (A, B, C, D)
+   - Click "Download Collage" to save your creation
+
+### For Operators (Running Claude Code)
+
+1. **Start Claude Code** with the project open
+
+2. **Use the `/new-app` command** with guest details:
+   ```
+   /new-app Create "SleighShare" by Jamie using rudolph theme as a ride-share app
+   ```
+
+3. **Or paste the generated prompt** from the guest form into Claude Code
+
+4. **Direct guests to the collage page** at `/collage/app{N}` to download their creation
+
+## Available Themes
+
+| Theme | Character | Holiday |
+|-------|-----------|---------|
+| `santa` | Santa Claus | Christmas |
+| `mrs-claus` | Mrs. Claus | Christmas |
+| `scrooge` | Scrooge | Christmas |
+| `rudolph` | Rudolph | Christmas |
+| `frosty` | Frosty | Christmas |
+| `jack-frost` | Jack Frost | Christmas |
+| `nutcracker` | The Nutcracker | Christmas |
+| `sugar-plum` | Sugar Plum Fairy | Christmas |
+| `krampus` | Krampus | Christmas |
+| `father-time` | Father Time | Christmas |
+| `baby-new-year` | Baby New Year | Christmas |
+| `polar-bear` | Polar Bear Pete | Christmas |
+| `maccabee` | Judah Maccabee | Hanukkah |
+| `shamash` | The Shamash | Hanukkah |
+| `umoja` | Umoja (Unity) | Kwanzaa |
+| `kuumba` | Kuumba (Creativity) | Kwanzaa |
+| `solstice` | Winter Solstice | Winter |
+
+## App Types
+
+| Type | UI Pattern |
+|------|------------|
+| `ride-share` | Map-centric with bottom sheet |
+| `food-delivery` | Cards with horizontal scroll |
+| `dating` | Card stack with swipe gestures |
+| `finance` | Charts, numbers, indicators |
+| `social` | Grid, stories, floating action |
+| `fitness` | Progress rings, large numbers |
+| `music` | Album art dominant, playback bar |
+| `productivity` | Checkboxes, kanban hints |
+| `weather` | Large icons, temperature dominant |
+| `ecommerce` | Product cards, filters, CTAs |
+| `wellness` | Calm colors, centered content |
+| `recipe` | Hero image, structured lists |
+
+## Collage Layouts
+
+![Collage Output Example](docs/screenshots/collage-output.png)
+
+- **Layout A** - Cascading phones with info panel
+- **Layout B** - Stacked phones with text overlay
+- **Layout C** - Hero splash with supporting screens
+- **Layout D** - Phone lineup (3 side by side)
+
+## Project Structure
+
+```
+app/
+├── page.tsx              # Homepage with prompt builder
+├── app1/ - app11/        # Generated app slots
+├── collage/[folder]/     # Collage preview & download
+├── preview/[theme]/      # Theme color previews
+└── api/                  # API routes
+components/
+├── booth/                # Photo booth UI components
+└── ui/                   # Base UI components (shadcn)
+lib/
+├── registry.ts           # Character & app type data
+├── collage-layouts.ts    # Layout configurations
+└── collage-generator.ts  # Image generation
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Framework**: Next.js 16 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS 4 with CSS variables for theming
+- **UI Components**: Custom booth components + shadcn/ui
+- **Image Processing**: Sharp (for collage generation)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Development
 
-## Learn More
+### Available Scripts
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run dev      # Start development server
+npm run build    # Production build
+npm run lint     # Run ESLint
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Adding a New Theme
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Add CSS variables to `app/globals.css` under `[data-theme="new-theme"]`
+2. Add entry to `CHARACTER_DATA` in `lib/registry.ts`
+3. Theme preview auto-generates at `/preview/new-theme`
 
-## Deploy on Vercel
+### Adding New App Slots
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+When apps 12+ are needed, add lazy imports to `components/booth/collage-preview-live.tsx`:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```typescript
+12: {
+  splash: lazy(() => import('@/app/app12/page').catch(() => ({ default: () => null }))),
+  screen1: lazy(() => import('@/app/app12/screen-1/page').catch(() => ({ default: () => null }))),
+  screen2: lazy(() => import('@/app/app12/screen-2/page').catch(() => ({ default: () => null }))),
+},
+```
+
+## License
+
+MIT
+
+## Credits
+
+Made with Claude Code for A4D Holiday Tech Meetup
