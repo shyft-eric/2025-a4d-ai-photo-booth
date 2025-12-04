@@ -18,11 +18,11 @@ export function MapPlaceholder({
   markerCount = 3,
   showRoute = false 
 }: MapPlaceholderProps) {
-  // Generate random marker positions
-  const markers = React.useMemo(() => 
+  // Generate deterministic marker positions to avoid hydration mismatch
+  const markers = React.useMemo(() =>
     [...Array(markerCount)].map((_, i) => ({
-      x: 20 + Math.random() * 60,
-      y: 20 + Math.random() * 60,
+      x: 20 + ((i * 37 + 13) % 60),
+      y: 20 + ((i * 53 + 29) % 60),
       id: i,
     })),
     [markerCount]

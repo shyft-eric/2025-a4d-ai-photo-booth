@@ -171,8 +171,8 @@
   --muted-foreground: 280 15% 45%;
   --border: 280 20% 82%;
   --ring: 280 60% 40%;
-  --theme-gradient-start: 280 60% 40%;
-  --theme-gradient-end: 45 80% 50%;
+  --theme-gradient-start: 300 50% 35%;
+  --theme-gradient-end: 40 90% 55%;
 }
 
 [data-theme="sugar-plum"] {
@@ -392,13 +392,13 @@ body {
 }
 
 .phone-frame {
-  width: 390px;
-  height: 844px;
-  border-radius: 44px;
+  width: 375px;
+  height: 740px;
+  border-radius: 40px;
   overflow: hidden;
   position: relative;
   background: hsl(var(--background));
-  box-shadow: 
+  box-shadow:
     0 0 0 12px hsl(var(--foreground) / 0.08),
     0 25px 50px -12px hsl(var(--foreground) / 0.25);
 }

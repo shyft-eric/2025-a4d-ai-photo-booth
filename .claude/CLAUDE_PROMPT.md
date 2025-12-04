@@ -82,6 +82,7 @@ import { Heart, Star, Gift, Snowflake, DollarSign, MapPin, User, Home, Bell, Set
 ```tsx
 // /app/app{N}/layout.tsx
 import { AppShell } from "@/components/booth/app-shell"
+import { ScreenNav } from "@/components/booth/screen-nav"
 
 export const metadata = {
   title: "{APP_NAME} - {CHARACTER}'s {APP_TYPE} App",
@@ -97,13 +98,14 @@ export const appConfig = {
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div 
+    <div
       data-theme={appConfig.theme}
       className="flex items-center justify-center min-h-screen bg-zinc-900 p-8"
     >
       <AppShell>
         {children}
       </AppShell>
+      <ScreenNav basePath="/app{N}" appName={appConfig.name} />
     </div>
   )
 }
@@ -166,21 +168,44 @@ export default function Screen() {
 
 ## 🎨 Styling Notes
 
+### Theme Color Variables
 Use HSL CSS variables for theme colors:
-- `hsl(var(--background))` - Page background
-- `hsl(var(--foreground))` - Text color
-- `hsl(var(--primary))` - Primary action color
-- `hsl(var(--primary-foreground))` - Text on primary
+- `hsl(var(--background))` - Page background (usually light)
+- `hsl(var(--foreground))` - Main text color (dark, for light backgrounds)
+- `hsl(var(--primary))` - Primary brand color (buttons, accents)
+- `hsl(var(--primary-foreground))` - Text ON primary color backgrounds
 - `hsl(var(--secondary))` - Secondary color
-- `hsl(var(--accent))` - Accent/highlight
-- `hsl(var(--muted))` - Muted backgrounds
-- `hsl(var(--muted-foreground))` - Muted text
+- `hsl(var(--accent))` - Accent/highlight color
+- `hsl(var(--muted))` - Muted/subtle backgrounds
+- `hsl(var(--muted-foreground))` - Muted/subtle text
 - `hsl(var(--card))` - Card background
 - `hsl(var(--border))` - Border color
 
+### CRITICAL: Color Contrast Rules (WCAG)
+**Always ensure text is readable against its background!**
+
+| Background | Use for Text |
+|------------|--------------|
+| `--background` (light) | `--foreground` or `--primary` |
+| `--card` (light) | `--foreground` or `--card-foreground` |
+| `--primary` (colored) | `--primary-foreground` |
+| `--secondary` (varies) | `--secondary-foreground` |
+| `--muted` (light) | `--foreground` or `--muted-foreground` |
+| Gradient backgrounds | `--primary-foreground` (white) |
+
+**Common Mistakes to Avoid:**
+- NEVER use `--primary-foreground` (white) on `--background` (white/light)
+- NEVER use `--foreground` (dark) on `--primary` (dark/colored)
+- For SplashHero with `backgroundPattern="snow"` or `"stars"`, use `--foreground` for text
+- For SplashHero with `backgroundPattern="gradient"`, use `--primary-foreground` for text
+
+### Tailwind Syntax
 Use Tailwind classes wrapped in brackets for CSS variables:
 ```tsx
+// Correct contrast pairing
+className="bg-[hsl(var(--background))] text-[hsl(var(--foreground))]"
 className="bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))]"
+className="bg-[hsl(var(--card))] text-[hsl(var(--foreground))]"
 ```
 
 ## ✅ Checklist Before Responding

@@ -7,18 +7,20 @@
  * This will capture all screens for the app and save them to ./captures/
  */
 
-import { chromium, type Browser, type Page } from 'playwright';
+import { firefox, type Browser, type Page } from 'playwright';
 import * as fs from 'fs';
 import * as path from 'path';
 
 const BASE_URL = process.env.BASE_URL || 'http://localhost:3000';
 const CAPTURES_DIR = './captures';
-const VIEWPORT = { width: 390, height: 844 }; // iPhone 14 Pro
+const VIEWPORT = { width: 375, height: 740 }; // Realistic phone mockup proportions
 
 interface CaptureResult {
   appNumber: number;
   appName: string;
   author: string;
+  theme: string;
+  appType: string;
   screens: string[];
   timestamp: string;
 }
@@ -58,12 +60,13 @@ async function captureScreen(page: Page, url: string, outputPath: string): Promi
 }
 
 async function captureApp(
-  appNumber: number, 
-  appName: string, 
+  appNumber: number,
+  appName: string,
   author: string
 ): Promise<CaptureResult> {
-  const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-  const appDir = path.join(CAPTURES_DIR, `app${appNumber}-${timestamp}`);
+  const timestamp = new Date().toISOString();
+  // Simple folder name without timestamp - just app{N}
+  const appDir = path.join(CAPTURES_DIR, `app${appNumber}`);
   await ensureDir(appDir);
 
   console.log(`\n🎄 Vibe Coding Photo Booth - Screen Capture`);
@@ -73,9 +76,26 @@ async function captureApp(
   console.log(`  Slot: #${appNumber}`);
   console.log(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`);
 
-  const browser: Browser = await chromium.launch();
+  const browser: Browser = await firefox.launch();
   const context = await browser.newContext({ viewport: VIEWPORT });
   const page: Page = await context.newPage();
+
+  // Try to extract theme from the app page
+  let theme = 'santa';
+  let appType = 'social';
+
+  try {
+    await page.goto(`${BASE_URL}/app${appNumber}`, { waitUntil: 'networkidle', timeout: 10000 });
+
+    // Extract data-theme attribute
+    const themeAttr = await page.$eval('[data-theme]', (el) => el.getAttribute('data-theme'));
+    if (themeAttr) {
+      theme = themeAttr;
+      console.log(`  🎨 Theme detected: ${theme}`);
+    }
+  } catch {
+    console.log(`  ⚠️  Could not detect theme, using default: ${theme}`);
+  }
 
   const screens: string[] = [];
   const screenRoutes = [
@@ -88,7 +108,7 @@ async function captureApp(
     const url = `${BASE_URL}/app${appNumber}${screen.route}`;
     const filename = `${screen.name}.png`;
     const outputPath = path.join(appDir, filename);
-    
+
     const success = await captureScreen(page, url, outputPath);
     if (success) {
       screens.push(outputPath);
@@ -97,11 +117,28 @@ async function captureApp(
 
   await browser.close();
 
+  // Try to read appType from the layout file
+  try {
+    const layoutPath = path.join(process.cwd(), 'app', `app${appNumber}`, 'layout.tsx');
+    if (fs.existsSync(layoutPath)) {
+      const layoutContent = fs.readFileSync(layoutPath, 'utf-8');
+      const appTypeMatch = layoutContent.match(/appType:\s*["']([^"']+)["']/);
+      if (appTypeMatch) {
+        appType = appTypeMatch[1];
+        console.log(`  📱 App type detected: ${appType}`);
+      }
+    }
+  } catch {
+    console.log(`  ⚠️  Could not detect app type, using default: ${appType}`);
+  }
+
   // Save metadata
   const metadata: CaptureResult = {
     appNumber,
     appName,
     author,
+    theme,
+    appType,
     screens,
     timestamp,
   };
