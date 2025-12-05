@@ -9,7 +9,7 @@ A holiday tech meetup activity where guests create whimsical mobile app mockups 
 - **17 Holiday Character Themes** - Santa, Mrs. Claus, Rudolph, Frosty, Nutcracker, and more
 - **12 App Type Templates** - Ride-share, food delivery, dating, fitness, productivity, etc.
 - **Live Collage Preview** - See your app screens rendered in beautiful phone mockups
-- **4 Collage Layouts** - Choose from cascading, stacked, hero, or lineup layouts
+- **3 Collage Layouts** - Choose from cascading cards, tilted hero, or stacked showcase
 - **AI-Powered App Generation** - Use Claude Code to generate complete app mockups from prompts
 
 ![Collage Preview](docs/screenshots/collage-preview.png)
@@ -56,7 +56,7 @@ A holiday tech meetup activity where guests create whimsical mobile app mockups 
 3. **View your app** once generated at `/app{N}` (e.g., `/app5`)
 
 4. **Create your collage** at `/collage/app{N}`:
-   - Choose from 4 different layouts (A, B, C, D)
+   - Choose from 3 different layouts (A, B, C)
    - Click "Download Collage" to save your creation
 
 ### For Operators (Running Claude Code)
@@ -115,10 +115,9 @@ A holiday tech meetup activity where guests create whimsical mobile app mockups 
 
 ![Collage Output Example](docs/screenshots/collage-output.png)
 
-- **Layout A** - Cascading phones with info panel
-- **Layout B** - Stacked phones with text overlay
-- **Layout C** - Hero splash with supporting screens
-- **Layout D** - Phone lineup (3 side by side)
+- **Layout A: Cascading Cards** - Stepped phones with subtle tilts, dark background
+- **Layout B: Tilted Hero** - Hero phone with title text overlay, light background
+- **Layout C: Stacked Showcase** - Overlapping tilted screens with fanned effect, dark background
 
 ## Project Structure
 
